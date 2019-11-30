@@ -18,7 +18,7 @@ namespace textGame
     {
         int max = Enum.GetNames(typeof(PointType)).Length;
         Random rnd = new Random();
-                
+
         // свои координаты
         public int X { get; set; }
         public int Y { get; set; }

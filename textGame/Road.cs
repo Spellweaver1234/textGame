@@ -39,7 +39,7 @@ namespace textGame
         public static List<Road> AddRoadsRect(List<CrossPoint> pts)
         {
             List<Road> roads = new List<Road>();
-            
+
             // по часовой стрелке
             roads.Add(new Road(pts[0], pts[1]));
             roads[0].Name = "0";
@@ -65,10 +65,10 @@ namespace textGame
                     // точка на AB
                     int ab = random.Next(0, width);
                     CrossPoint pt1 = new CrossPoint(ab, 0);
-                    
+
                     // добавляем точку
                     oldPoints.Add(pt1);
-                    
+
                     // добавляем точку на дорогу AB
                     roads[0].AddPoint(pt1);
 
@@ -111,7 +111,7 @@ namespace textGame
 
             // проверяем с roads[4] так как 0-3 это граничные дороги
             // перебор дорог, КОТОРЫЕ сравниваем
-            for (int i = 4; i < roads.Count;i++)
+            for (int i = 4; i < roads.Count; i++)
             {
                 // перебор дорог С КОТОРЫМИ сравиниваем
                 for (int j = i; j < roads.Count; j++)
@@ -119,7 +119,6 @@ namespace textGame
                     // исключая себя из проверки
                     if (i != j)
                     {
-                        //bool isCross = CheckCross(roads[i].start, roads[i].finish, roads[j].start, roads[j].finish);
                         // потенциальная точка 
                         CrossPoint newPoint = Intersection(roads[i].start, roads[i].finish, roads[j].start, roads[j].finish);
 
@@ -166,7 +165,7 @@ namespace textGame
             if (p2.X < p3.X)
             {
                 // нету взаимной абсциссы
-                return false; 
+                return false;
             }
 
             // если оба отрезка вертикальные
@@ -180,7 +179,6 @@ namespace textGame
                     if (!((Math.Max(p1.Y, p2.Y) < Math.Min(p3.Y, p4.Y)) ||
                         (Math.Min(p1.Y, p2.Y) > Math.Max(p3.Y, p4.Y))))
                     {
-                        //CrossPoint newPoint = new CrossPoint((int)Xa, (int)Ya);
                         return true;
                     }
                 }
@@ -206,11 +204,10 @@ namespace textGame
                 b2 = p3.Y - A2 * p3.X;
                 Ya = A2 * Xa + b2;
 
-                if (p3.X <= Xa && p4.X >= Xa && 
+                if (p3.X <= Xa && p4.X >= Xa &&
                     Math.Min(p1.Y, p2.Y) <= Ya &&
                     Math.Max(p1.Y, p2.Y) >= Ya)
                 {
-                    //CrossPoint newPoint = new CrossPoint((int)Xa, (int)Ya);
                     return true;
                 }
                 return false;
@@ -225,11 +222,10 @@ namespace textGame
                 b1 = p1.Y - A1 * p1.X;
                 Ya = A1 * Xa + b1;
 
-                if (p1.X <= Xa && p2.X >= Xa && 
+                if (p1.X <= Xa && p2.X >= Xa &&
                     Math.Min(p3.Y, p4.Y) <= Ya &&
                     Math.Max(p3.Y, p4.Y) >= Ya)
                 {
-                    //CrossPoint newPoint = new CrossPoint((int)Xa, (int)Ya);
                     return true;
                 }
                 return false;
@@ -240,11 +236,11 @@ namespace textGame
             A2 = (p3.Y - p4.Y) / (p3.X - p4.X);
             b1 = p1.Y - A1 * p1.X;
             b2 = p3.Y - A2 * p3.X;
-            
+
             // отрезки параллельны
             if (A1 == A2)
             {
-                return false; 
+                return false;
             }
 
             // Xa - абсцисса точки пересечения двух прямых
@@ -253,7 +249,7 @@ namespace textGame
             // точка Xa находится вне пересечения проекций отрезков на ось X
             if ((Xa < Math.Max(p1.X, p3.X)) || (Xa > Math.Min(p2.X, p4.X)))
             {
-                return false; 
+                return false;
             }
             else
             {
@@ -273,7 +269,7 @@ namespace textGame
                 (q * p1 - q1 * p);
             double y = (yo * p * q1 - y1 * p1 * q - xo * q * q1 + x1 * q * q1) /
                 (p * q1 - p1 * q);
-            
+
             return new CrossPoint((int)x, (int)y);
         }
     }
